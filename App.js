@@ -18,8 +18,16 @@ export default function App() {
 
     function handleButtonPress(buttonPressed){
       if(buttonPressed == "+" || buttonPressed == "-" || buttonPressed == "*" || buttonPressed == "/"){
-        setCurrentNumber(currentNumber + " " + buttonPressed + " ");
-        return;
+        
+        if(currentNumber.toString().indexOf("+") == -1 && currentNumber.toString().indexOf("-") == -1 && currentNumber.toString().indexOf("*") == -1 && currentNumber.toString().indexOf("/") == -1){
+          setCurrentNumber(currentNumber + " " + buttonPressed + " ");
+          return;
+        }else{
+          const newNumberCurrent = currentNumber.substring(0, currentNumber.length - 3);
+          setCurrentNumber('');
+          setCurrentNumber(newNumberCurrent + " " + buttonPressed + " ");
+          return;
+        }
       }
 
       switch(buttonPressed){
@@ -28,12 +36,15 @@ export default function App() {
           setCurrentNumber('');
         return;
         case 'DEL':
-          setLastNumber('1');
-          setCurrentNumber('1');
+          setCurrentNumber(currentNumber.slice(0, -1));
         return;
         case '=':
           setLastNumber(currentNumber + "=");
           calculate()
+        return;
+        case '+/-':
+          var change = currentNumber * -1;
+          setCurrentNumber(change);
         return;
       }
 
@@ -72,8 +83,6 @@ export default function App() {
         }
       }else{
         Alert.alert("Invalid format");
-        setLastNumber('');
-        setCurrentNumber('');
       }
     }
 
