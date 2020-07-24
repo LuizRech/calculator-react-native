@@ -52,8 +52,8 @@ export default function App() {
     }
 
     function calculate(){
-      
-     const splitNumbers = currentNumber.split(" ");
+
+     const splitNumbers = currentNumber.toString().split(" ");
      const firstNumber = parseFloat(splitNumbers[0]);
      const secondNumber = parseFloat(splitNumbers[2]);
      const operation = splitNumbers[1];
