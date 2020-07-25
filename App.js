@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 
@@ -23,7 +22,8 @@ export default function App() {
           setCurrentNumber(currentNumber + " " + buttonPressed + " ");
           return;
         }else{
-          const newNumberCurrent = currentNumber.substring(0, currentNumber.length - 3);
+
+          const newNumberCurrent = currentNumber.toString().substring(0, currentNumber.length - 3);
           setCurrentNumber('');
           setCurrentNumber(newNumberCurrent + " " + buttonPressed + " ");
           return;
@@ -44,7 +44,11 @@ export default function App() {
         return;
         case '+/-':
           var change = currentNumber * -1;
-          setCurrentNumber(change);
+          isNaN(change) ? Alert.alert("Invalid Format") : setCurrentNumber(change);
+        return;
+        case '%':
+          var change = currentNumber / 100;
+          isNaN(change) ? Alert.alert("Invalid Format") : setCurrentNumber(change);
         return;
       }
 
